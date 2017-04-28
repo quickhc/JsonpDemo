@@ -6,7 +6,7 @@ import android.util.Log;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
+import org.jsoup.nodes.Element;
 
 import java.io.IOException;
 
@@ -37,11 +37,39 @@ public class MainActivity extends AppCompatActivity {
 //
 //            }
 //        });
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    doc = Jsoup.connect("http://m.xiaoxiaoshuwu.com/wapbook-478040-44258494/")
+//                            .get();
+////                    doc = Jsoup.connect("http://www.baidu.com").get();
+//                } catch (IOException e) {
+//                    Log.e("123456", e.toString());
+//                }
+//
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        String html = doc.html();
+//                        Document docm = Jsoup.parse(html);
+//                        Elements div = docm.select("#chapterContent");
+////                        pb_next
+//                        Elements div2 = docm.select("a[href]#pb_next");
+//
+//                        String href = div2.attr("href");
+//
+//                        Log.i("123456",  href);
+//                    }
+//                });
+//            }
+//        }).start();
+
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    doc = Jsoup.connect("http://m.xiaoxiaoshuwu.com/wapbook-478040-44258494/")
+                    doc = Jsoup.connect("https://github.com/")
                             .get();
 //                    doc = Jsoup.connect("http://www.baidu.com").get();
                 } catch (IOException e) {
@@ -53,13 +81,15 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         String html = doc.html();
                         Document docm = Jsoup.parse(html);
-                        Elements div = docm.select("#chapterContent");
-//                        pb_next
-                        Elements div2 = docm.select("a[href]#pb_next");
+//                        Elements div = docm.select("#chapterContent");
+////                        pb_next
+                        Element div2 = docm.select("a.mini-repo-list-item css-truncate").first();
 
-                        String href = div2.attr("href");
+//                        for (int i = 0; i < div2.size(); i++) {
+//                            String href = div2.attr("href");
+//                        }
+                        Log.i("123456",  div2.toString());
 
-                        Log.i("123456",  href);
                     }
                 });
             }
